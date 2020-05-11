@@ -1,0 +1,43 @@
+program -> stmt-sequence
+stmt-sequence -> statement stmt'
+stmt' -> ; statement stmt'
+stmt' -> @
+statement -> if-stmt
+statement -> repeat-stmt
+statement -> assign-stmt
+statement -> read-stmt
+statement -> write-stmt
+statement -> While-stmt
+statement -> Dowhile-stmt
+statement -> for-stmt
+if-stmt -> if exp then stmt-sequence else-part' end
+else-part' -> else stmt-sequence
+else-part' -> @
+repeat-stmt -> repeat stmt-sequence until exp
+assign-stmt -> identifier := exp
+read-stmt -> read identifier
+write-stmt -> write exp
+exp -> simple-exp cmp-exp'
+cmp-exp' -> comparison-op simple-exp
+cmp-exp' -> @
+comparison-op -> <
+comparison-op -> =
+simple-exp -> term term'
+term' -> addop term
+term' -> @
+addop -> +
+addop -> -
+term -> factor factor'
+factor' -> mulop factor
+factor' -> @
+mulop -> *
+mulop -> /
+mulop -> %
+factor -> ( exp )
+factor -> number
+factor -> identifier
+While-stmt -> while exp do  stmt-sequence  endwhile
+Dowhile-stmt -> do stmt-sequence  while  exp 
+for-stmt -> for identifier := simple-exp for-choose'
+for-choose' -> to simple-exp  do stmt-sequence enddo
+for-choose' -> downto simple-exp do stmt-sequence enddo
